@@ -2,22 +2,35 @@ package io.cucumber.skeleton;
 
 public class Belly {
     private boolean isGrowling = false;
-    private boolean hurts = false;
-    public void eat(int cukes) {
+    private boolean isHurting = false;
+    private int cukesEaten = 0;
+    private int hoursWaited = 0;
 
-    }
-    public void wait(int hours) {
-        if (hours == 1) {
+    private void goingToGrowl () {
+        if (hoursWaited == 1 && cukesEaten >= 10) {
             isGrowling = true;
         }
-        if (hours == 2) {
-            hurts = true;
+    }
+    private void goingToHurt () {
+        if (hoursWaited == 2 && cukesEaten >= 20) {
+            isHurting = true;
         }
+    }
+
+    public void eat(int cukes) {
+        cukesEaten += cukes;
+        goingToGrowl();
+        goingToHurt();
+    }
+    public void wait(int hours) {
+        hoursWaited += hours;
+        goingToGrowl();
+        goingToHurt();
     }
     public boolean getIsGrowling () {
         return isGrowling;
     }
-    public boolean getHurts () {
-        return hurts;
+    public boolean getIsHurting () {
+        return isHurting;
     }
 }

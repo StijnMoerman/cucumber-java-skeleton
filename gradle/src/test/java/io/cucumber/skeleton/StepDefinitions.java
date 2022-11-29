@@ -73,6 +73,28 @@ public class StepDefinitions {
         }
     }
 
+    @Then("bowl number {int} is on side of player {int}")
+    public void bowl_is_on_side_of_player(int bowlNumber, int player) {
+        Bowl bowl = firstBowl;
+        for (int i = 1; i < bowlNumber; i++) {
+            bowl = bowl.getNextBowl();
+        }
+        assertEquals(player, bowl.getSideOfPlayer());
+    }
+
+    @Then("bowl {int} has opposite bowl {int}")
+    public void bowl_has_opposite_bowl(int bowlNumber, int oppositeBowlNumber) {
+        Bowl bowl = firstBowl;
+        Bowl oppositeBowl = firstBowl;
+        for (int i = 1; i < bowlNumber; i++) {
+            bowl = bowl.getNextBowl();
+        }
+        for (int i = 1; i < oppositeBowlNumber; i++) {
+            oppositeBowl = oppositeBowl.getNextBowl();
+        }
+        assertEquals(oppositeBowl,bowl.getOppositeBowl());
+    }
+
     // some feature with asserting if the game is ended yet
 
 }

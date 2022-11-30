@@ -2,7 +2,8 @@ Feature: Bowl Kalaha
 
   Scenario Outline: first bowl is not a Kalaha
     Given I have a bowl
-    Then bowl number <bowl> "<KalahaOrNot>" a Kalaha
+    When I consider bowl number <bowl>
+    Then this bowl "<KalahaOrNot>" a Kalaha
 
   Examples:
     | bowl     | KalahaOrNot    | 

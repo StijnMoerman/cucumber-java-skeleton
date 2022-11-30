@@ -2,7 +2,8 @@ Feature: Bowl Side Player
 
   Scenario Outline: bowl on side player
     Given I have a bowl
-    Then bowl number <bowl> is on side of player <player>
+    When I consider bowl number <bowl>
+    Then this bowl is on side of player <player>
 
   Examples:
     | bowl     | player    | 

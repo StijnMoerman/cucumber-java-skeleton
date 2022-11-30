@@ -14,6 +14,7 @@ class Cukes {
 
 public class StepDefinitions {
     private Belly belly;
+    private Bowl consideredBowl;
     private Bowl firstBowl;
 
     @Given("I have {int} cukes in my belly")
@@ -30,6 +31,14 @@ public class StepDefinitions {
     @When("I wait {int} hour(s)")
     public void I_wait_hours(int hours) {
         belly.wait(hours);
+    }
+
+    @When("I consider bowl number {int}")
+    public void I_consider_bowl_number(int bowlNumber) {
+        consideredBowl = firstBowl;
+        for (int i = 1; i < bowlNumber; i++) {
+            consideredBowl = consideredBowl.getNextBowl();
+        }
     }
 
     @Then("my belly should {string}")
@@ -50,49 +59,33 @@ public class StepDefinitions {
         }
     }
 
-    @Then("bowl {int} has {int} stone(s)")
-    public void bowl_has_stones(int bowlNumber, int stones) {
-        Bowl bowl = firstBowl;
-        for (int i = 1; i < bowlNumber; i++) {
-            bowl = bowl.getNextBowl();
-        }
-        assertEquals(stones, bowl.getStones());
+    @Then("this bowl has {int} stone(s)")
+    public void this_bowl_has_stones(int stones) {
+        assertEquals(stones, consideredBowl.getStones());
     }
 
-    @Then("bowl number {int} {string} a Kalaha")
-    public void bowl_is_a_Kalaha(int bowlNumber, String isKalaha) {
-        Bowl bowl = firstBowl;
-        for (int i = 1; i < bowlNumber; i++) {
-            bowl = bowl.getNextBowl();
-        }
+    @Then("this bowl {string} a Kalaha")
+    public void this_bowl_a_Kalaha(String isKalaha) {
         if (isKalaha.equals("is not")) {
-            assertFalse(bowl.getIsKalaha());
+            assertFalse(consideredBowl.getIsKalaha());
         }
         else {
-            assertTrue(bowl.getIsKalaha());
+            assertTrue(consideredBowl.getIsKalaha());
         }
     }
 
-    @Then("bowl number {int} is on side of player {int}")
-    public void bowl_is_on_side_of_player(int bowlNumber, int player) {
-        Bowl bowl = firstBowl;
-        for (int i = 1; i < bowlNumber; i++) {
-            bowl = bowl.getNextBowl();
-        }
-        assertEquals(player, bowl.getSideOfPlayer());
+    @Then("this bowl is on side of player {int}")
+    public void this_bowl_is_on_side_of_player(int player) {
+        assertEquals(player, consideredBowl.getSideOfPlayer());
     }
 
-    @Then("bowl {int} has opposite bowl {int}")
-    public void bowl_has_opposite_bowl(int bowlNumber, int oppositeBowlNumber) {
-        Bowl bowl = firstBowl;
+    @Then("this bowl has opposite bowl {int}")
+    public void bowl_has_opposite_bowl(int oppositeBowlNumber) {
         Bowl oppositeBowl = firstBowl;
-        for (int i = 1; i < bowlNumber; i++) {
-            bowl = bowl.getNextBowl();
-        }
         for (int i = 1; i < oppositeBowlNumber; i++) {
             oppositeBowl = oppositeBowl.getNextBowl();
         }
-        assertEquals(oppositeBowl,bowl.getOppositeBowl());
+        assertEquals(oppositeBowl,consideredBowl.getOppositeBowl());
     }
 
     // some feature with asserting if the game is ended yet

@@ -2,7 +2,8 @@ Feature: Bowl Opposite Bowl
 
   Scenario Outline: find opposite bowl
     Given I have a bowl
-    Then bowl <bowl> has opposite bowl <oppbowl>
+    When I consider bowl number <bowl>
+    Then this bowl has opposite bowl <oppbowl>
 
   Examples:
     | bowl     | oppbowl   | 

@@ -67,6 +67,16 @@ public class StepDefinitions {
         oneBowl.sendToKalaha(stones);
     }
 
+    @When("this bowl attacks its opposite bowl")
+    public void this_bowl_attacks_its_opposite_bowl() {
+        oneBowl.attackOppositeBowl();
+    }
+
+    @Then("I consider this bowls opposite bowl")
+    public void I_consider_this_bowls_opposite_bowl () {
+        oneBowl = oneBowl.getOppositeBowl();
+    }
+
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
         assertEquals(stones, oneBowl.getStones());

@@ -62,6 +62,11 @@ public class StepDefinitions {
         }
     }
 
+    @When("this bowl sends {int} stones to Kalaha")
+    public void this_bowl_sends_stones_to_Kalaha(int stones) {
+        oneBowl.sendToKalaha(stones);
+    }
+
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
         assertEquals(stones, oneBowl.getStones());

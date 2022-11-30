@@ -2,7 +2,7 @@ Feature: Bowl Stones
 
   Scenario Outline: first bowl has four stones
     Given I have a bowl
-    When I consider bowl number <bowl>
+    When I consider bowl <bowl>
     Then this bowl has <stones> stones
 
   Examples:

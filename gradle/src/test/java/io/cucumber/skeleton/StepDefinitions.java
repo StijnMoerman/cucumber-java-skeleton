@@ -6,15 +6,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 
-class Cukes {
-    static String bellyIsDoing () {
-        return "growl";
-    }
-}
-
 public class StepDefinitions {
     private Belly belly;
-    private Bowl consideredBowl;
+    private Bowl oneBowl;
+    private Bowl anotherBowl;
     private Bowl firstBowl;
 
     @Given("I have {int} cukes in my belly")
@@ -33,11 +28,19 @@ public class StepDefinitions {
         belly.wait(hours);
     }
 
-    @When("I consider bowl number {int}")
-    public void I_consider_bowl_number(int bowlNumber) {
-        consideredBowl = firstBowl;
+    @When("I consider bowl {int}")
+    public void I_consider_bowl(int bowlNumber) {
+        oneBowl = firstBowl;
         for (int i = 1; i < bowlNumber; i++) {
-            consideredBowl = consideredBowl.getNextBowl();
+            oneBowl = oneBowl.getNextBowl();
+        }
+    }
+
+    @When("I consider another bowl {int}")
+    public void I_consider_another_bowl(int bowlNumber) {
+        anotherBowl = firstBowl;
+        for (int i = 1; i < bowlNumber; i++) {
+            anotherBowl = anotherBowl.getNextBowl();
         }
     }
 
@@ -61,31 +64,27 @@ public class StepDefinitions {
 
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
-        assertEquals(stones, consideredBowl.getStones());
+        assertEquals(stones, oneBowl.getStones());
     }
 
     @Then("this bowl {string} a Kalaha")
     public void this_bowl_a_Kalaha(String isKalaha) {
         if (isKalaha.equals("is not")) {
-            assertFalse(consideredBowl.getIsKalaha());
+            assertFalse(oneBowl.getIsKalaha());
         }
         else {
-            assertTrue(consideredBowl.getIsKalaha());
+            assertTrue(oneBowl.getIsKalaha());
         }
     }
 
     @Then("this bowl is on side of player {int}")
     public void this_bowl_is_on_side_of_player(int player) {
-        assertEquals(player, consideredBowl.getSideOfPlayer());
+        assertEquals(player, oneBowl.getSideOfPlayer());
     }
 
-    @Then("this bowl has opposite bowl {int}")
-    public void bowl_has_opposite_bowl(int oppositeBowlNumber) {
-        Bowl oppositeBowl = firstBowl;
-        for (int i = 1; i < oppositeBowlNumber; i++) {
-            oppositeBowl = oppositeBowl.getNextBowl();
-        }
-        assertEquals(oppositeBowl,consideredBowl.getOppositeBowl());
+    @Then("these bowls are opposite bowls")
+    public void these_bowls_are_opposite_bowls() {
+        assertEquals(anotherBowl,oneBowl.getOppositeBowl());
     }
 
     // some feature with asserting if the game is ended yet

@@ -18,30 +18,9 @@ public class StepDefinitions {
         belly.eat(cukes);
     }
 
-    @Given("I have a bowl")
-    public void I_have_a_bowl() {
-        firstBowl = new Bowl();
-    }
-
     @When("I wait {int} hour(s)")
     public void I_wait_hours(int hours) {
         belly.wait(hours);
-    }
-
-    @When("I consider bowl {int}")
-    public void I_consider_bowl(int bowlNumber) {
-        oneBowl = firstBowl;
-        for (int i = 1; i < bowlNumber; i++) {
-            oneBowl = oneBowl.getNextBowl();
-        }
-    }
-
-    @When("I consider another bowl {int}")
-    public void I_consider_another_bowl(int bowlNumber) {
-        anotherBowl = firstBowl;
-        for (int i = 1; i < bowlNumber; i++) {
-            anotherBowl = anotherBowl.getNextBowl();
-        }
     }
 
     @Then("my belly should {string}")
@@ -59,6 +38,27 @@ public class StepDefinitions {
         else {
             assertFalse(belly.getIsGrowling());
             assertFalse(belly.getIsHurting());
+        }
+    }
+
+    @Given("I have a bowl")
+    public void I_have_a_bowl() {
+        firstBowl = new Bowl();
+    }
+
+    @When("I consider bowl {int}")
+    public void I_consider_bowl(int bowlNumber) {
+        oneBowl = firstBowl;
+        for (int i = 1; i < bowlNumber; i++) {
+            oneBowl = oneBowl.getNextBowl();
+        }
+    }
+
+    @When("I consider another bowl {int}")
+    public void I_consider_another_bowl(int bowlNumber) {
+        anotherBowl = firstBowl;
+        for (int i = 1; i < bowlNumber; i++) {
+            anotherBowl = anotherBowl.getNextBowl();
         }
     }
 

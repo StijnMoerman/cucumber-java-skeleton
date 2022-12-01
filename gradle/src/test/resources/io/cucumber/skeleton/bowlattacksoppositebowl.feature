@@ -4,24 +4,23 @@ Feature: Bowl Attacks Opposite Bowl
     Given I have a bowl
     When I consider bowl <bowl>
     And this bowl attacks its opposite bowl
-    Then this bowl has 0 stones
-    And I consider this bowls opposite bowl
-    And this bowl has 0 stones
-    And I consider bowl <kalaha>
-    And this bowl has 8 stones
+    And I consider how the stones are distributed
+    Then the stones should be distributed like
+      | <st1> | <st2> | <st3> | <st4> | <st5> | <st6> | <st7> | <st8> | <st9> | <st10> | <st11> | <st12> | <st13> | <st14> | 
 
   Examples:
-    | bowl | kalaha    | 
-    | 1    | 7         | 
-    | 2    | 7         | 
-    | 3    | 7         | 
-    | 4    | 7         | 
-    | 5    | 7         | 
-    | 6    | 7         | 
-    | 8    | 14        | 
-    | 9    | 14        | 
-    | 10   | 14        | 
-    | 11   | 14        | 
-    | 12   | 14        | 
-    | 13   | 14        | 
-    | 15   | 7         | 
+    | bowl | st1 | st2 | st3 | st4 | st5 | st6 | st7 | st8 | st9 | st10 | st11 | st12 | st13 | st14 |
+    | 1    | 0 | 4 | 4 | 4 | 4 | 4 | 8 | 4 | 4 | 4 | 4 | 4 | 0 | 0 |  
+    | 2    | 4 | 0 | 4 | 4 | 4 | 4 | 8 | 4 | 4 | 4 | 4 | 0 | 4 | 0 |  
+    | 3    | 4 | 4 | 0 | 4 | 4 | 4 | 8 | 4 | 4 | 4 | 0 | 4 | 4 | 0 |  
+    | 4    | 4 | 4 | 4 | 0 | 4 | 4 | 8 | 4 | 4 | 0 | 4 | 4 | 4 | 0 |  
+    | 5    | 4 | 4 | 4 | 4 | 0 | 4 | 8 | 4 | 0 | 4 | 4 | 4 | 4 | 0 |  
+    | 6    | 4 | 4 | 4 | 4 | 4 | 0 | 8 | 0 | 4 | 4 | 4 | 4 | 4 | 0 |  
+    | 7    | 4 | 4 | 4 | 4 | 4 | 4 | 0 | 4 | 4 | 4 | 4 | 4 | 4 | 0 |  
+    | 8    | 4 | 4 | 4 | 4 | 4 | 0 | 0 | 0 | 4 | 4 | 4 | 4 | 4 | 8 |  
+    | 9    | 4 | 4 | 4 | 4 | 0 | 4 | 0 | 4 | 0 | 4 | 4 | 4 | 4 | 8 |  
+    | 10   | 4 | 4 | 4 | 0 | 4 | 4 | 0 | 4 | 4 | 0 | 4 | 4 | 4 | 8 |  
+    | 11   | 4 | 4 | 0 | 4 | 4 | 4 | 0 | 4 | 4 | 4 | 0 | 4 | 4 | 8 |  
+    | 12   | 4 | 0 | 4 | 4 | 4 | 4 | 0 | 4 | 4 | 4 | 4 | 0 | 4 | 8 |  
+    | 13   | 0 | 4 | 4 | 4 | 4 | 4 | 0 | 4 | 4 | 4 | 4 | 4 | 0 | 8 |  
+    | 14   | 4 | 4 | 4 | 4 | 4 | 4 | 0 | 4 | 4 | 4 | 4 | 4 | 4 | 0 |  

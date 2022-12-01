@@ -2,6 +2,10 @@ package io.cucumber.skeleton;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.cucumber.java.Transpose;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -11,6 +15,7 @@ public class StepDefinitions {
     private Bowl oneBowl;
     private Bowl anotherBowl;
     private Bowl firstBowl;
+    private List<Integer> stoneDistributionList = new ArrayList<>();
 
     @Given("I have {int} cukes in my belly")
     public void I_have_cukes_in_my_belly(int cukes) {
@@ -62,6 +67,17 @@ public class StepDefinitions {
         }
     }
 
+    @When("I consider how the stones are distributed") 
+    public void I_consider_how_the_stones_are_distributed () {
+        stoneDistributionList.add(987463521);
+        stoneDistributionList.clear();
+        Bowl bowl = firstBowl;
+        for (int i = 0; i < 14; i++) {
+            stoneDistributionList.add(bowl.getStones());
+            bowl = bowl.getNextBowl();
+        }
+    }
+
     @When("this bowl sends {int} stones to Kalaha")
     public void this_bowl_sends_stones_to_Kalaha(int stones) {
         oneBowl.sendToKalaha(stones);
@@ -72,6 +88,11 @@ public class StepDefinitions {
         oneBowl.attackOppositeBowl();
     }
 
+    @When("this bowl takes {int} stones in turn of player {int}")
+    public void this_bowl_takes_stones_in_turn_of_player(int stones, int turnPlayer) {
+        oneBowl.takeStone(stones, turnPlayer);
+    }
+
     @Then("I consider this bowls opposite bowl")
     public void I_consider_this_bowls_opposite_bowl () {
         oneBowl = oneBowl.getOppositeBowl();
@@ -80,6 +101,11 @@ public class StepDefinitions {
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
         assertEquals(stones, oneBowl.getStones());
+    }
+
+    @Then("the stones should be distributed like")
+    public void the_stones_should_be_distributed_like (@Transpose List<Integer> list) {
+        assertEquals(list, stoneDistributionList);
     }
 
     @Then("this bowl {string} a Kalaha")

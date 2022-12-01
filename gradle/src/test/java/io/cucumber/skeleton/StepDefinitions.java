@@ -15,10 +15,17 @@ public class StepDefinitions {
     private Bowl anotherBowl;
     private Bowl firstBowl;
     private List<Integer> stoneDistributionList = new ArrayList<>();
+    private Game game;
+    private List<Integer> currentGameScenario = new ArrayList<>();
 
     @Given("I have a bowl")
     public void I_have_a_bowl() {
         firstBowl = new Bowl();
+    }
+
+    @Given("I have a game")
+    public void I_have_a_game() {
+        game = new Game();
     }
 
     @When("I consider bowl {int}")
@@ -45,6 +52,14 @@ public class StepDefinitions {
         for (int i = 0; i < 14; i++) {
             stoneDistributionList.add(bowl.getStones());
             bowl = bowl.getNextBowl();
+        }
+    }
+
+    @When("I consider the current game scenario") 
+    public void I_consider_the_current_game_scenario () {
+        currentGameScenario.clear();
+        for (int i = 1; i <= 14; i++) {
+            currentGameScenario.add(game.getBowl(i).getStones());
         }
     }
 
@@ -98,4 +113,23 @@ public class StepDefinitions {
         assertEquals(anotherBowl,oneBowl.getOppositeBowl());
     }
 
+    @Then("the game is not finished yet")
+    public void the_game_is_not_finished_yet() {
+        assertFalse(game.endOfGame());
+    }
+
+    @Then("it is the turn of player {int}")
+    public void it_is_the_turn_of_player(int player) {
+        assertEquals(player,game.getTurnPlayer());
+    }
+
+    @Then("player {int} has {int} points")
+    public void player_has_points (int player, int points) {
+        assertEquals(points, game.getPoints()[player-1]);
+    }
+
+    @Then("the current game scenario is like")
+    public void the_current_game_scenario_is_like (@Transpose List<Integer> list) {
+        assertEquals(list, currentGameScenario);
+    }
 }

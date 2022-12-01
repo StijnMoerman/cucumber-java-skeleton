@@ -63,6 +63,11 @@ public class StepDefinitions {
         oneBowl.takeStone(stones, turnPlayer);
     }
 
+    @When("this bowl executes a turn")
+    public void this_bowl_executes_a_turn() {
+        oneBowl.executeTurn();
+    }
+
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
         assertEquals(stones, oneBowl.getStones());

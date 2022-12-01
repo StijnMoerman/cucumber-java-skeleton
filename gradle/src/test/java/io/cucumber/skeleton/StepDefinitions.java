@@ -63,11 +63,6 @@ public class StepDefinitions {
         oneBowl.takeStone(stones, turnPlayer);
     }
 
-    @Then("I consider this bowls opposite bowl")
-    public void I_consider_this_bowls_opposite_bowl () {
-        oneBowl = oneBowl.getOppositeBowl();
-    }
-
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
         assertEquals(stones, oneBowl.getStones());
@@ -97,7 +92,5 @@ public class StepDefinitions {
     public void these_bowls_are_opposite_bowls() {
         assertEquals(anotherBowl,oneBowl.getOppositeBowl());
     }
-
-    // some feature with asserting if the game is ended yet
 
 }

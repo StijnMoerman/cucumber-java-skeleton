@@ -83,6 +83,11 @@ public class StepDefinitions {
         oneBowl.executeTurn();
     }
 
+    @When("a turn is executed with bowl {int}")
+    public void a_turn_is_executed_with_bowl(int bowlNumber) {
+        game.turnOfPlayer(bowlNumber);
+    }
+
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
         assertEquals(stones, oneBowl.getStones());
@@ -123,7 +128,7 @@ public class StepDefinitions {
         assertEquals(player,game.getTurnPlayer());
     }
 
-    @Then("player {int} has {int} points")
+    @Then("player {int} has {int} point(s)")
     public void player_has_points (int player, int points) {
         assertEquals(points, game.getPoints()[player-1]);
     }

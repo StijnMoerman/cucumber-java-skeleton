@@ -17,3 +17,4 @@ Feature: Game Multiple Turns
       | bowl1 | bowl2 | bowl3 | player | points1 | points2 | st1 | st2 | st3 | st4 | st5 | st6 | st7 | st8 | st9 | st10 | st11 | st12 | st13 | st14 |
       | 6 | 1 | 4 | 2 | 2 | 0 | 4 | 4 | 4 | 0 | 5 | 1 | 2 | 1 | 6 | 6 | 5 | 5 | 5 | 0 | 
       | 6 | 3 | 1 | 2 | 7 | 1 | 0 | 5 | 5 | 5 | 5 | 0 | 7 | 0 | 5 | 0 | 5 | 5 | 5 | 1 | 
+      | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 5 | 5 | 5 | 5 | 4 | 0 | 0 | 5 | 5 | 5 | 5 | 4 | 0 | 

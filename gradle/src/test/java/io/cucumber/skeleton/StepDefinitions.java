@@ -85,7 +85,12 @@ public class StepDefinitions {
 
     @When("a turn is executed with bowl {int}")
     public void a_turn_is_executed_with_bowl(int bowlNumber) {
-        game.turnOfPlayer(bowlNumber);
+        try {
+            game.turnOfPlayer(bowlNumber);
+        }
+        catch (ArithmeticException e) {
+            e.printStackTrace();
+        } 
     }
 
     @Then("this bowl has {int} stone(s)")

@@ -92,6 +92,11 @@ public class StepDefinitions {
             e.printStackTrace();
         } 
     }
+    
+    @When("all stones are send to the next Kalaha")
+    public void all_stones_are_send_to_next_Kalaha () {
+        game.sendAllStonesToNextKalaha();
+    }
 
     @Then("this bowl has {int} stone(s)")
     public void this_bowl_has_stones(int stones) {
@@ -126,6 +131,11 @@ public class StepDefinitions {
     @Then("the game is not finished yet")
     public void the_game_is_not_finished_yet() {
         assertFalse(game.endOfGame());
+    }
+
+    @Then("the game is finished")
+    public void the_game_is_finished() {
+        assertTrue(game.endOfGame());
     }
 
     @Then("it is the turn of player {int}")

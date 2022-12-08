@@ -17,6 +17,8 @@ public class StepDefinitions {
     private List<Integer> stoneDistributionList = new ArrayList<>();
     private Game game;
     private List<Integer> currentGameScenario = new ArrayList<>();
+    private MancalaImpl mancala;
+    private List<Integer> currentMancalaState = new ArrayList<>();
 
     @Given("I have a bowl")
     public void I_have_a_bowl() {
@@ -26,6 +28,11 @@ public class StepDefinitions {
     @Given("I have a game")
     public void I_have_a_game() {
         game = new Game();
+    }
+
+    @Given("I have a Mancala game")
+    public void I_have_a_Mancala_game() {
+        mancala = new MancalaImpl();
     }
 
     @When("I consider bowl {int}")
@@ -60,6 +67,14 @@ public class StepDefinitions {
         currentGameScenario.clear();
         for (int i = 1; i <= 14; i++) {
             currentGameScenario.add(game.getBowl(i).getStones());
+        }
+    }
+    
+    @When("I consider the state of the current Mancala game") 
+    public void I_consider_the_state_of_the_current_Mancala_game () {
+        currentMancalaState.clear();
+        for (int i = 1; i <= 14; i++) {
+            currentMancalaState.add(mancala.getStonesForPit(i));
         }
     }
 
@@ -151,5 +166,30 @@ public class StepDefinitions {
     @Then("the current game scenario is like")
     public void the_current_game_scenario_is_like (@Transpose List<Integer> list) {
         assertEquals(list, currentGameScenario);
+    }
+
+    @Then("the Mancala game is not finished yet")
+    public void the_Mancala_game_is_not_finished_yet() {
+        assertFalse(mancala.isEndOfGame());
+    }
+
+    @Then("the Mancala game is finished")
+    public void the_Mancala_game_is_finished() {
+        assertTrue(mancala.isEndOfGame());
+    }
+
+    @Then("it is the turn of player {int} in Mancala")
+    public void it_is_the_turn_of_player_in_Mancala(int player) {
+        assertTrue(mancala.isPlayersTurn(player));
+    }
+
+    @Then("the winner of Mancala is {int}")
+    public void the_winner_of_Mancala_is (int winner) {
+        assertEquals(winner,mancala.getWinner());
+    }
+
+    @Then("the state of the current Mancala game is like")
+    public void the_state_of_the_current_Mancala_game_is_like (@Transpose List<Integer> list) {
+        assertEquals(list, currentMancalaState);
     }
 }

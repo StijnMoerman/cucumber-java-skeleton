@@ -107,6 +107,16 @@ public class StepDefinitions {
             e.printStackTrace();
         } 
     }
+
+    @When("Mancala executes a turn on bowl {int}")
+    public void Mancala_executes_a_turn_on_bowl(int bowlNumber) {
+        try {
+            mancala.playPit(bowlNumber);
+        }
+        catch (ArithmeticException e) {
+            e.printStackTrace();
+        } 
+    }
     
     @When("all stones are send to the next Kalaha")
     public void all_stones_are_send_to_next_Kalaha () {

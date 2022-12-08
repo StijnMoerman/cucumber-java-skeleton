@@ -10,4 +10,3 @@ Feature: Game Initial Values
     And the current game scenario is like 
       | 4 | 4 | 4 | 4 | 4 | 4 | 0 | 4 | 4 | 4 | 4 | 4 | 4 | 0 | 
 
-  Examples:

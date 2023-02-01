@@ -1,6 +1,6 @@
 Feature: Mancala Initial Values
 
-  Scenario: mancala has initial values as expected
+  Scenario Outline: mancala has initial values as expected
     Given I have a Mancala game
     When I consider the state of the current Mancala game
     Then the Mancala game is not finished yet
@@ -8,3 +8,5 @@ Feature: Mancala Initial Values
     And the winner of Mancala is 0
     And the state of the current Mancala game is like 
       | 4 | 4 | 4 | 4 | 4 | 4 | 0 | 4 | 4 | 4 | 4 | 4 | 4 | 0 | 
+
+  Examples:
